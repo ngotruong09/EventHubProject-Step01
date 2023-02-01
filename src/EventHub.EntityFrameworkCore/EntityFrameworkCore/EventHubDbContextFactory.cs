@@ -14,11 +14,11 @@ namespace EventHub.EntityFrameworkCore
         {
             EventHubEfCoreEntityExtensionMappings.Configure();
 
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<EventHubDbContext>()
-                .UseNpgsql(configuration.GetConnectionString("Default"));
+                .UseSqlServer(configuration.GetConnectionString("Default"));
 
             return new EventHubDbContext(builder.Options);
         }
